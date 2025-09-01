@@ -76,6 +76,7 @@ export default function HomePage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onClickIcon={() => setQuery("")}
+              ariaLabelIcon="clear"
             />
             <Button
               text={"Filtrar"}
@@ -205,7 +206,7 @@ export default function HomePage() {
         {showLoading && (
           <div className="flex flex-col items-center justify-center h-96">
             <Image
-              src={randomImage}
+              src={randomImage || "/placeholder.png"}
               alt="logo rick and morty"
               height={64}
               width={218}

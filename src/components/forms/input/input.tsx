@@ -1,6 +1,5 @@
 "use client";
 
-import { InputFeedbackMsg } from "@/components/forms/input-feedback-msg";
 import { Label } from "@/components/forms/label";
 import { Icons, IconSaxNames } from "@/components/icon";
 import type { InputProps as InputUIProps } from "@/components/ui/input";
@@ -13,12 +12,10 @@ interface InputProps extends InputUIProps {
   name?: string;
   className?: string;
   type?: string;
-  errorMsg?: string;
-  successMsg?: string;
-  warningMsg?: string;
   iconLeft?: IconSaxNames;
   iconRight?: IconSaxNames;
   onClickIcon?: () => void;
+  ariaLabelIcon?: string;
 }
 
 function Input({
@@ -28,13 +25,11 @@ function Input({
   type = "text",
   className,
   placeholder,
-  errorMsg,
-  successMsg,
-  warningMsg,
   iconLeft,
   iconRight,
   onClickIcon,
   onChange,
+  ariaLabelIcon,
   size,
   ...rest
 }: InputProps) {
@@ -43,31 +38,19 @@ function Input({
       {label && <Label label={label} id={id || name} />}
 
       {iconLeft && (
-        <div
+        <button
           onClick={onClickIcon}
+          aria-label={ariaLabelIcon}
           className={`absolute left-3 ${
             size === "lg" ? "top-3.5" : size === "md" ? "top-3" : "top-2"
           } ${onClickIcon ? "cursor-pointer" : ""}`}
         >
           <Icons name={iconLeft} className="stroke-gray-600" size={18} />
-        </div>
+        </button>
       )}
 
       {name ? (
-        <InputUI
-          type={type}
-          {...rest}
-          placeholder={placeholder}
-          variant={
-            errorMsg
-              ? "error"
-              : successMsg
-              ? "success"
-              : warningMsg
-              ? "warning"
-              : "default"
-          }
-        />
+        <InputUI type={type} {...rest} placeholder={placeholder} />
       ) : (
         <InputUI
           type={type}
@@ -89,17 +72,16 @@ function Input({
       )}
 
       {iconRight && (
-        <div
+        <button
           onClick={onClickIcon}
+          aria-label={ariaLabelIcon}
           className={`absolute right-3 ${
             size === "lg" ? "top-3.5" : size === "md" ? "top-3" : "top-2"
           } ${onClickIcon ? "cursor-pointer" : ""}`}
         >
           <Icons name={iconRight} className="stroke-gray-600" size={18} />
-        </div>
+        </button>
       )}
-
-      <InputFeedbackMsg success={successMsg} warning={warningMsg} />
     </div>
   );
 }
