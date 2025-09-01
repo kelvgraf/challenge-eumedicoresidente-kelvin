@@ -105,4 +105,5 @@ function CardList({ characters }: CardListProps) {
     </>
   );
 }
+
 export { CardList };

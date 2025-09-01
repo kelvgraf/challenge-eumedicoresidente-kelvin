@@ -5,7 +5,7 @@ import { getCharacters } from "../domain/usecases/getCharacters";
 import { useTimeout } from "@/hooks/useTimeou";
 import useDebounce from "@/hooks/useDebouce";
 
-import { CardList } from "@/app/components/card";
+import { CardList } from "@/app/components/card/card-list";
 import { Input } from "@/components/forms/input";
 import { Button } from "@/components/buttons";
 import { Typography } from "@/components/typography";

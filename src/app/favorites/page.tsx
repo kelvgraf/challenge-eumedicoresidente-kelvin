@@ -1,6 +1,6 @@
 "use client";
 import { useFavorites } from "@/hooks/useFavorites";
-import { CardList } from "@/app/components/card";
+import { CardList } from "@/app/components/card/card-list";
 
 export default function FavoritesPage() {
   const { favorites } = useFavorites();
