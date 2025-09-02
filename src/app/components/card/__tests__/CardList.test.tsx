@@ -1,9 +1,7 @@
-// src/app/components/card/__tests__/CardList.test.tsx
 import { render, screen, fireEvent } from "@testing-library/react";
 import { CardList } from "@/app/components/card";
 import { useFavorites } from "@/hooks/useFavorites";
 
-// Mock do hook
 jest.mock("@/hooks/useFavorites");
 
 const mockCharacters = [
@@ -47,15 +45,13 @@ describe("CardList", () => {
       favorites: [],
       addFavorite: addFavoriteMock,
       removeFavorite: removeFavoriteMock,
-      isFavorite: jest.fn(() => false), // inicialmente não é favorito
+      isFavorite: jest.fn(() => false),
     });
 
     render(<CardList characters={mockCharacters} />);
 
-    // encontra todos os botões de favorito (todos com iconRight="Heart")
     const buttons = screen.getAllByRole("button");
 
-    // clica no primeiro personagem
     fireEvent.click(buttons[0]);
     expect(addFavoriteMock).toHaveBeenCalledWith(mockCharacters[0]);
   });
@@ -68,14 +64,13 @@ describe("CardList", () => {
       favorites: mockCharacters,
       addFavorite: addFavoriteMock,
       removeFavorite: removeFavoriteMock,
-      isFavorite: jest.fn(() => true), // já é favorito
+      isFavorite: jest.fn(() => true),
     });
 
     render(<CardList characters={mockCharacters} />);
 
     const buttons = screen.getAllByRole("button");
 
-    // clica no primeiro personagem
     fireEvent.click(buttons[0]);
     expect(removeFavoriteMock).toHaveBeenCalledWith(mockCharacters[0].id);
   });

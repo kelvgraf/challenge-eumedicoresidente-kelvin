@@ -55,13 +55,15 @@ function CardList({ characters }: CardListProps) {
               }}
             >
               <div className="flex justify-center">
-                <Image
-                  src={character?.image}
-                  alt={character?.name}
-                  className="h-60 rounded-lg"
-                  height={64}
-                  width={218}
-                />
+                {character?.image && (
+                  <Image
+                    src={character?.image}
+                    alt={character?.name}
+                    className="h-60 rounded-lg"
+                    height={64}
+                    width={218}
+                  />
+                )}
               </div>
               <span className="flex items-center gap-2">
                 <Icons name="Heart" size={20} className="stroke-gray-500" />

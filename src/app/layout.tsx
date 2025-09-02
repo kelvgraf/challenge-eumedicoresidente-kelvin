@@ -14,8 +14,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Boilerplate",
-  description: "Site do Boilerplate",
+  title: "Rick and Morty",
+  description: "Site sobre tudo de Rick and Morty",
 };
 
 async function RootLayout({ children }: { children: ReactNode }) {

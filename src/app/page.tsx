@@ -14,6 +14,7 @@ import { Pagination } from "@/components/pagination";
 import MortyRunningLoading from "@/../public/images/morty-running.gif";
 import RickRunningLoading from "@/../public/images/rick-running.gif";
 import MortyRotateLoading from "@/../public/images/morty-rotate.gif";
+import RickAndMortyNotFound from "@/../public/images/rick-and-morty-not-found.png";
 
 import { Character } from "@/types/types";
 
@@ -27,7 +28,7 @@ export default function HomePage() {
   const debouncedQuery = useDebounce(query, 600);
 
   const [showFilter, setShowFilter] = useState(false);
-  const [statusFilter, setStatusFilter] = useState<string>(""); // alive | dead | unknown
+  const [statusFilter, setStatusFilter] = useState<string>("");
   const [speciesFilter, setSpeciesFilter] = useState<string>("");
 
   const delayDone = useTimeout(2000);
@@ -67,7 +68,7 @@ export default function HomePage() {
   return (
     <main className="absolute mt-20 w-screen p-5 flex justify-center">
       <div className="max-w-[1440px] w-full flex flex-col justify-center">
-        <div className="flex items-center justify-between gap-6 mb-11 w-full">
+        <div className="flex items-center justify-between gap-6 mb-8 w-full">
           <span className="flex items-start sm:items-center flex-col sm:flex-row gap-2 w-full">
             <Input
               className="w-full lg:w-1/3 lg:max-w-1/2"
@@ -87,92 +88,93 @@ export default function HomePage() {
                   ? "bg-neutral-500 dark:bg-neutral-500 text-gray-200 dark:text-gray-200"
                   : "bg-neutral-200 dark:bg-neutral-700 text-gray-700 dark:text-gray-300"
               }`}
+              ariaLabel="Filtrar"
             />
           </span>
         </div>
 
-        {showFilter && (
-          <div className="flex gap-4 mb-6">
-            <select
-              className="rounded-md p-2 text-gray-200"
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
+        <div className={`${showFilter ? "flex" : "hidden"}  flex gap-4 mb-6`}>
+          <select
+            className="rounded-md p-2 text-gray-200"
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            aria-label="status"
+          >
+            <option
+              value=""
+              className="bg-neutral-500 text-gray-200 drak:text-white"
             >
-              <option
-                value=""
-                className="bg-neutral-500 text-gray-200 drak:text-white"
-              >
-                Todos status
-              </option>
-              <option
-                value="alive"
-                className="bg-neutral-500 text-gray-200 drak:text-white"
-              >
-                Vivo
-              </option>
-              <option
-                value="dead"
-                className="bg-neutral-500 text-gray-200 drak:text-white"
-              >
-                Morto
-              </option>
-              <option
-                value="unknown"
-                className="bg-neutral-500 text-gray-200 drak:text-white"
-              >
-                Desconhecido
-              </option>
-            </select>
+              Todos status
+            </option>
+            <option
+              value="alive"
+              className="bg-neutral-500 text-gray-200 drak:text-white"
+            >
+              Vivo
+            </option>
+            <option
+              value="dead"
+              className="bg-neutral-500 text-gray-200 drak:text-white"
+            >
+              Morto
+            </option>
+            <option
+              value="unknown"
+              className="bg-neutral-500 text-gray-200 drak:text-white"
+            >
+              Desconhecido
+            </option>
+          </select>
 
-            <select
-              value={speciesFilter}
-              onChange={(e) => setSpeciesFilter(e.target.value)}
+          <select
+            value={speciesFilter}
+            onChange={(e) => setSpeciesFilter(e.target.value)}
+            aria-label="species"
+          >
+            <option
+              value=""
+              className="bg-neutral-500 text-gray-200 drak:text-white"
             >
-              <option
-                value=""
-                className="bg-neutral-500 text-gray-200 drak:text-white"
-              >
-                Todas as espécies
-              </option>
-              <option
-                value="Human"
-                className="bg-neutral-500 text-gray-200 drak:text-white"
-              >
-                Human
-              </option>
-              <option
-                value="Alien"
-                className="bg-neutral-500 text-gray-200 drak:text-white"
-              >
-                Alien
-              </option>
-              <option
-                value="Humanoid"
-                className="bg-neutral-500 text-gray-200 drak:text-white"
-              >
-                Humanoid
-              </option>
-              <option
-                value="Animal"
-                className="bg-neutral-500 text-gray-200 drak:text-white"
-              >
-                Animal
-              </option>
-              <option
-                value="Robot"
-                className="bg-neutral-500 text-gray-200 drak:text-white"
-              >
-                Robot
-              </option>
-              <option
-                value="Mythological Creature"
-                className="bg-neutral-500 text-gray-200 drak:text-white"
-              >
-                Mythological Creature
-              </option>
-            </select>
-          </div>
-        )}
+              Todas as espécies
+            </option>
+            <option
+              value="Human"
+              className="bg-neutral-500 text-gray-200 drak:text-white"
+            >
+              Human
+            </option>
+            <option
+              value="Alien"
+              className="bg-neutral-500 text-gray-200 drak:text-white"
+            >
+              Alien
+            </option>
+            <option
+              value="Humanoid"
+              className="bg-neutral-500 text-gray-200 drak:text-white"
+            >
+              Humanoid
+            </option>
+            <option
+              value="Animal"
+              className="bg-neutral-500 text-gray-200 drak:text-white"
+            >
+              Animal
+            </option>
+            <option
+              value="Robot"
+              className="bg-neutral-500 text-gray-200 drak:text-white"
+            >
+              Robot
+            </option>
+            <option
+              value="Mythological Creature"
+              className="bg-neutral-500 text-gray-200 drak:text-white"
+            >
+              Mythological Creature
+            </option>
+          </select>
+        </div>
 
         {!showFilter && (statusFilter || speciesFilter) && (
           <div className="flex flex-wrap gap-2 mb-4">
@@ -189,15 +191,22 @@ export default function HomePage() {
                     ? "morto"
                     : "desconhecido"
                 }`}
+                ariaLabel={`Status: ${
+                  statusFilter === "alive"
+                    ? "vivo"
+                    : statusFilter === "dead"
+                    ? "morto"
+                    : "desconhecido"
+                }`}
               />
             )}
             {speciesFilter && (
               <Button
-                className="px-3 py-1 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200 
-                   rounded-full text-sm flex items-center gap-1 cursor-pointer"
+                className="px-3 py-1 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200 rounded-full text-sm flex items-center gap-1 cursor-pointer"
                 onClick={() => setSpeciesFilter("")}
                 iconRight="CloseCircle"
                 text={`Espécie: ${speciesFilter}`}
+                ariaLabel={`Espécie: ${speciesFilter}`}
               />
             )}
           </div>
@@ -205,21 +214,42 @@ export default function HomePage() {
 
         {showLoading && (
           <div className="flex flex-col items-center justify-center h-96">
-            <Image
-              src={randomImage || "/placeholder.png"}
-              alt="logo rick and morty"
-              height={64}
-              width={218}
-            />
+            {randomImage && (
+              <Image
+                src={randomImage}
+                alt="rick and morty loading"
+                height={64}
+                width={218}
+              />
+            )}
             <Typography variant="p" text="Loading..." />
           </div>
         )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center mb-11">
-          {!showLoading && <CardList characters={characters} />}
+          {!showLoading && !!characters.length && (
+            <CardList characters={characters} />
+          )}
         </div>
 
-        {!showLoading && (
+        <div className="flex flex-col items-center justify-center mb-6">
+          {!showLoading && !characters.length && (
+            <>
+              <p className="font-semibold text-4xl text-wrap text-center mb-6">
+                Nenhum resultado encontrado, realize uma nova busca
+              </p>
+              <Image
+                src={RickAndMortyNotFound}
+                alt="rick and morty"
+                height={64}
+                width={320}
+              />
+              <p>Wubba Lubba Dub Dub! Cuidado com os olhos</p>
+            </>
+          )}
+        </div>
+
+        {!showLoading && totalPages > 0 && (
           <div className="flex justify-center gap-4">
             <Pagination
               currentPage={page}

@@ -12,6 +12,7 @@ interface ButtonProps extends ButtonUIProps {
   isLoading?: boolean;
   iconRight?: string;
   iconLeft?: string;
+  ariaLabel?: string;
 }
 
 function Button({
@@ -22,6 +23,7 @@ function Button({
   iconLeft,
   iconRight,
   className,
+  ariaLabel,
   ...rest
 }: ButtonProps) {
   return (
@@ -30,6 +32,7 @@ function Button({
       className={clsx("flex gap-2", className)}
       {...rest}
       asChild={!!href}
+      aria-label={ariaLabel || "text"}
     >
       {isLoading ? (
         <Spinner className="w-6 h-6" />

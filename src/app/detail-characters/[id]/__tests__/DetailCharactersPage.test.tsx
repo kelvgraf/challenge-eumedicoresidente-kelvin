@@ -1,10 +1,8 @@
-// src/app/detail-characters/__tests__/DetailCharactersPage.test.tsx
 import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import DetailCharactersPage from "@/app/detail-characters/[id]/page";
 import { getCharacterById } from "@/domain/usecases/getCharacterById";
 import { useRouter, useParams } from "next/navigation";
 
-// Mocks
 jest.mock("@/domain/usecases/getCharacterById");
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
@@ -35,7 +33,7 @@ describe("DetailCharactersPage", () => {
   });
 
   it("should render loading state initially", () => {
-    (getCharacterById as jest.Mock).mockReturnValue(new Promise(() => {})); // promessa pendente
+    (getCharacterById as jest.Mock).mockReturnValue(new Promise(() => {}));
     render(<DetailCharactersPage />);
     expect(screen.getByText(/Carregando personagem.../i)).toBeInTheDocument();
   });

@@ -1,9 +1,7 @@
-// src/app/favorites/__tests__/FavoritesPage.test.tsx
 import { render, screen } from "@testing-library/react";
 import FavoritesPage from "@/app/favorites/page";
 import { useFavorites } from "@/hooks/useFavorites";
 
-// Mock do hook
 jest.mock("@/hooks/useFavorites");
 
 const mockCharacters = [
@@ -43,7 +41,7 @@ describe("FavoritesPage", () => {
       favorites: mockCharacters,
       addFavorite: jest.fn(),
       removeFavorite: jest.fn(),
-      isFavorite: jest.fn(() => true), // ou false dependendo do teste
+      isFavorite: jest.fn(() => true),
     });
 
     render(<FavoritesPage />);
