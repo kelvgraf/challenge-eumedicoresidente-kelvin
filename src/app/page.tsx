@@ -95,7 +95,7 @@ export default function HomePage() {
 
         <div className={`${showFilter ? "flex" : "hidden"}  flex gap-4 mb-6`}>
           <select
-            className="rounded-md p-2 text-gray-200"
+            className="rounded-md p-2 text-gray-700 dark:text-gray-200"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
             aria-label="status"
@@ -130,6 +130,7 @@ export default function HomePage() {
             value={speciesFilter}
             onChange={(e) => setSpeciesFilter(e.target.value)}
             aria-label="species"
+            className="rounded-md p-2 text-gray-700 dark:text-gray-200"
           >
             <option
               value=""
@@ -141,7 +142,7 @@ export default function HomePage() {
               value="Human"
               className="bg-neutral-500 text-gray-200 drak:text-white"
             >
-              Human
+              Humano
             </option>
             <option
               value="Alien"
@@ -153,7 +154,7 @@ export default function HomePage() {
               value="Humanoid"
               className="bg-neutral-500 text-gray-200 drak:text-white"
             >
-              Humanoid
+              Humanoide
             </option>
             <option
               value="Animal"
@@ -165,13 +166,13 @@ export default function HomePage() {
               value="Robot"
               className="bg-neutral-500 text-gray-200 drak:text-white"
             >
-              Robot
+              Robo
             </option>
             <option
               value="Mythological Creature"
               className="bg-neutral-500 text-gray-200 drak:text-white"
             >
-              Mythological Creature
+              Criatura mitológica
             </option>
           </select>
         </div>
@@ -180,8 +181,7 @@ export default function HomePage() {
           <div className="flex flex-wrap gap-2 mb-4">
             {statusFilter && (
               <Button
-                className="px-3 py-1 bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200 
-                   rounded-full text-sm flex items-center gap-1 cursor-pointer"
+                className="px-3 py-1 text-gray-700 dark:text-gray-300 bg-neutral-200 dark:bg-neutral-700 hover:bg-neutral-500 hover:text-white rounded-full text-sm flex items-center gap-1 cursor-pointer"
                 onClick={() => setStatusFilter("")}
                 iconRight="CloseCircle"
                 text={`Status: ${
@@ -202,7 +202,7 @@ export default function HomePage() {
             )}
             {speciesFilter && (
               <Button
-                className="px-3 py-1 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200 rounded-full text-sm flex items-center gap-1 cursor-pointer"
+                className="px-3 py-1 text-gray-700 dark:text-gray-300 bg-neutral-200 dark:bg-neutral-700 hover:bg-neutral-500 hover:text-white  rounded-full text-sm flex items-center gap-1 cursor-pointer"
                 onClick={() => setSpeciesFilter("")}
                 iconRight="CloseCircle"
                 text={`Espécie: ${speciesFilter}`}

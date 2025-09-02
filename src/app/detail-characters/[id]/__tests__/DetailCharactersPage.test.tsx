@@ -35,7 +35,9 @@ describe("DetailCharactersPage", () => {
   it("should render loading state initially", () => {
     (getCharacterById as jest.Mock).mockReturnValue(new Promise(() => {}));
     render(<DetailCharactersPage />);
-    expect(screen.getByText(/Carregando personagem.../i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Carregando informações do personagem.../i)
+    ).toBeInTheDocument();
   });
 
   it("should render character details", async () => {

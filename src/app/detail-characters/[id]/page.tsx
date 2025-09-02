@@ -79,14 +79,17 @@ export default function DetailCharactersPage() {
 
   if (loading) {
     return (
-      <main className="absolute mt-20 w-screen p-5 flex justify-center">
+      <main className="absolute mt-20 w-screen p-5 flex flex-col justify-center items-center">
         <Image
           src={randomImage}
           alt="logo rick and morty"
           height={64}
-          width={218}
+          width={320}
         />
-        <Typography variant="h2" text="Carregando personagem..." />
+        <Typography
+          variant="h2"
+          text="Carregando informações do personagem..."
+        />
       </main>
     );
   }
